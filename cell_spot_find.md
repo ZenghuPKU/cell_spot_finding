@@ -36,12 +36,12 @@ A GitHub Education version account is required for login.
 
 [FileZilla](https://filezilla-project.org) is a good choice for both windows and macOS user to transfer files.
 
-For detailed instructions, please see instructions in the [zilla.md](https://github.com/ZenghuPKU/zenglab_server/blob/main/R.md) page (To be continued)
+For detailed instructions, please see instructions in the [Zilla.md](https://github.com/ZenghuPKU/cell_spot_finding/blob/main/Zilla.md) page (To be continued).
 
 ## Login 
 For windows users, use MobaxTerm/cmd.
 
-For MAC users, use Termius/Terminal.
+For macOS users, use Termius/Terminal.
 
 Please see instructions in the [SSH&DataManagement.md](https://github.com/ZenghuPKU/zenglab_server/blob/main/SSH%26DataManagement.md) page
 
@@ -119,9 +119,6 @@ $ python find_batch.py --input_dir T15_tif --output_image_dir T15_res --output_c
 ```
 
 During the execution, you'll see logs similar to the following:
-> - Ignore any warnings that may appear.
-> - Cell counting for ch00 may take longer, please be patient. (Approximately several tens of seconds per image).
-> - When you see this message "all works have DONE!", it indicates that the script has finished running. Please review the image results to decide whether adjustments to thresholds, brightness, or contrast are needed. You can check the CSV file to view the final statistical results.
 
 ```batch
 2024-06-14 11:37:37.267706: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
@@ -151,6 +148,11 @@ processing images in ch02...
 -----------------------counting for spot in ch02 has DONE-----------------------
 ------------------------------all works have DONE!------------------------------
 ```
+
+> NOTE:
+> - Ignore any warnings that may appear.
+> - Cell counting for ch00 may take longer, please be patient. (Approximately several tens of seconds per image).
+> - When you see this message "all works have DONE!", it indicates that the script has finished running. Please review the image results to decide whether adjustments to thresholds, brightness, or contrast are needed. You can check the CSV file to view the final statistical results.
 
 If you have a large number of images to process, I strongly recommend using the `nohup` command or `tmux` to run the program in the server backend.
 
