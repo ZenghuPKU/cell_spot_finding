@@ -1,0 +1,176 @@
+## Image naming format
+
+Folder can be named whatever you want.
+Images in folder should be named as "A1-1_*_ch00.tif" where A1 represents the well name, 1 represents position in a well, ch represents fluo channel.
+**dapi channel** must be named as **ch00**, other two fluo channels should be named as ch01, ch02 in order you want.
+
+An example for change name from *C405.tif to *ch00.tif in batches.
+
+> NOTE: BE CAREFUL! This step cannot be undone
+
+```batch
+rename 's/C405.tif$/ch00.tif/' *.tif
+```
+
+## Transfer raw data
+
+Transfer raw data from microscopy to `/media/zenglab/data/YourDirectory`
+
+#### scp
+
+command line in cmd/terminal
+
+#### Mobaxterm
+
+For windows user, [mobaxterm](https://mobaxterm.mobatek.net/) is a useful for terminal managment 
+
+please enter port 22 and your specific account name to login 
+
+#### Termius
+
+For MAC user, [Termius](https://termius.com) is a useful for terminal managment.
+
+It need github education version to login in.
+
+If you think it is tedious, you can use FileZilla
+
+#### FileZilla
+
+It's a good choice for both windows and MAC user to transfer files.
+
+![image-20240614115751793](/Users/yyyly/Library/Application Support/typora-user-images/image-20240614115751793.png)
+
+
+
+![image-20240614121209324](/Users/yyyly/Library/Application Support/typora-user-images/image-20240614121209324.png)
+
+
+
+## Login 
+For windows users, use MobaxTerm/cmd.
+
+For MAC users, use Termius/Terminal.
+
+Please see instructions in the [SSH&DataManagement.md](https://github.com/ZenghuPKU/zenglab_server/blob/main/SSH%26DataManagement.md) page
+
+## Preparation
+
+Go to your working space
+
+```batch
+cd /media/zenglab/result/YourDirectory
+```
+
+soft link 
+
+```batch
+ln -s /media/zenglab/data/YourDirectory/ImageDirectory ImageDirectory
+```
+
+copy script to your own space
+
+```batchfile
+cp /media/zenglab/script/yly/find_batch.py find_batch.py
+```
+
+activate public conda environment
+
+```batch
+source /media/zenglab/miniconda3/etc/profile.d/conda.sh 
+conda activate publiccenv
+```
+
+
+
+## Run the script
+Run help command for instruction
+
+```batchfile
+$python find_batch.py --help
+```
+
+Then you will see instruction like below
+
+```batchfile
+2024-06-14 10:57:09.944248: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-14 10:57:10.837019: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+usage: find_batch.py [-h] --input_dir INPUT_DIR --output_image_dir OUTPUT_IMAGE_DIR --output_csv
+                     OUTPUT_CSV [--alpha ALPHA] [--beta BETA] [--bin_threshold BIN_THRESHOLD]
+                     [--area_threshold AREA_THRESHOLD]
+
+Process images for cell number counting.
+
+options:
+  -h, --help            show this help message and exit
+  --input_dir INPUT_DIR
+                        Input directory containing .tif images.
+  --output_image_dir OUTPUT_IMAGE_DIR
+                        Output directory for processed images.
+  --output_csv OUTPUT_CSV
+                        Output CSV file for cell numbers.
+  --alpha ALPHA         Contrast factor, the default value of alpha is 1.0, and you can adjust
+                        this value as needed. Typically, the value of alpha ranges from 0.1
+                        (very low contrast) to 3.0 (very high contrast).
+  --beta BETA           Brightness factor, the default value of beta is 0, and you can adjust
+                        this value as needed. Typically, the value of beta ranges from -100
+                        (very dark image) to 100 (very bright image).
+  --bin_threshold BIN_THRESHOLD
+                        Binary threshold for image processing.
+  --area_threshold AREA_THRESHOLD
+                        Area threshold for image processing.
+```
+
+Here give an example just using basic parameter not adjust threshold, contrast, and brightness, but you can change them according to your own images. Now I just set them in a relative fine default value.
+
+```batchfile
+$ python find_batch.py --input_dir T15_tif --output_image_dir T15_res --output_csv T15.csv
+```
+
+You will see log like below
+
+```batch
+2024-06-14 11:37:37.267706: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-14 11:37:37.889700: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Found model '2D_versatile_fluo' for 'StarDist2D'.
+2024-06-14 11:37:38.752974: E external/local_xla/xla/stream_executor/cuda/cuda_driver.cc:282] failed call to cuInit: CUDA_ERROR_SYSTEM_DRIVER_MISMATCH: system has unsupported display driver / cuda driver combination
+2024-06-14 11:37:38.753004: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:134] retrieving CUDA diagnostic information for host: langchao-NF5468M6
+2024-06-14 11:37:38.753010: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:141] hostname: langchao-NF5468M6
+2024-06-14 11:37:38.753099: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:165] libcuda reported version is: 550.67.0
+2024-06-14 11:37:38.753115: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:169] kernel reported version is: 550.54.15
+2024-06-14 11:37:38.753120: E external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:251] kernel version 550.54.15 does not match DSO version 550.67.0 -- cannot find working devices in this configuration
+Loading network weights from 'weights_best.h5'.
+Loading thresholds from 'thresholds.json'.
+Using default values: prob_thresh=0.479071, nms_thresh=0.3.
+processing images in ch00...
+base.py (406): Predicting on non-float input... ( forgot to normalize? )
+2024-06-14 11:37:45.490581: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 536870912 exceeds 10% of free system memory.
+2024-06-14 11:37:45.604253: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 536870912 exceeds 10% of free system memory.
+2024-06-14 11:37:46.394366: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 536870912 exceeds 10% of free system memory.
+2024-06-14 11:37:54.718991: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 536870912 exceeds 10% of free system memory.
+2024-06-14 11:37:54.771373: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 536870912 exceeds 10% of free system memory.
+-------------------------counting for cell number DONE--------------------------
+processing images in ch01...
+-----------------------counting for spot in ch01 has DONE-----------------------
+processing images in ch02...
+-----------------------counting for spot in ch02 has DONE-----------------------
+------------------------------all works have DONE!------------------------------
+```
+
+Ignore warnings.
+
+counting for cell number will cost some time, I will improve them later using GPU.
+
+only if you see all works have DONE
+
+I strongly suggest you to use nohup command so that 
+
+```batch
+nohup python find_batch.py --input_dir T15_tif --output_image_dir T15_res --output_csv T15.csv > T15.log &
+```
+
+Use `top` or `htop` to see the process
+
+ ## Results
+
