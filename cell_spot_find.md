@@ -38,12 +38,6 @@ If you think it is tedious, you can use FileZilla
 
 It's a good choice for both windows and MAC user to transfer files.
 
-![image-20240614115751793](/Users/yyyly/Library/Application Support/typora-user-images/image-20240614115751793.png)
-
-
-
-![image-20240614121209324](/Users/yyyly/Library/Application Support/typora-user-images/image-20240614121209324.png)
-
 
 
 ## Login 
