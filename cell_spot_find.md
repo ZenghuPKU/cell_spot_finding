@@ -1,12 +1,11 @@
 ## Image naming format
 
-Folder can be named whatever you want.
-Images in folder should be named as "A1-1_*_ch00.tif" where A1 represents the well name, 1 represents position in a well, ch represents fluo channel.
-**dapi channel** must be named as **ch00**, other two fluo channels should be named as ch01, ch02 in order you want.
+Feel free to name the folder as you please.
+For images within the folder, follow the format "A1-1_*_ch00.tif," where "A1" denotes the well name, "1" indicates the position in the well, and "ch" represents the fluorescence channel. The **DAPI** channel must be named "**ch00**," while the other two fluorescence channels should be named "ch01" and "ch02" in your preferred order.
 
 An example for change name from *C405.tif to *ch00.tif in batches.
 
-> NOTE: BE CAREFUL! This step cannot be undone
+> NOTE: BE CAREFUL! This action is irreversible!
 
 ```batch
 rename 's/C405.tif$/ch00.tif/' *.tif
@@ -14,31 +13,30 @@ rename 's/C405.tif$/ch00.tif/' *.tif
 
 ## Transfer raw data
 
-Transfer raw data from microscopy to `/media/zenglab/data/YourDirectory`
+Transfer raw data from microscopy to `/media/zenglab/data/YourDirectory` in one of the following ways.
 
 #### scp
 
-command line in cmd/terminal
+Just open cmd on Windows or Terminal on macOS — no software download needed.
+```batch
+scp ImageDirectoryInHardDrive YourUserName@10.128.243.62:/media/zenglab/data/YourDirectory
+```
 
 #### Mobaxterm
 
-For windows user, [mobaxterm](https://mobaxterm.mobatek.net/) is a useful for terminal managment 
-
-please enter port 22 and your specific account name to login 
+For windows user, [mobaxterm](https://mobaxterm.mobatek.net/) is a useful for terminal managment.
 
 #### Termius
 
-For MAC user, [Termius](https://termius.com) is a useful for terminal managment.
+For macOS user, [Termius](https://termius.com) is a useful for terminal managment.
 
-It need github education version to login in.
-
-If you think it is tedious, you can use FileZilla
+A GitHub Education version account is required for login.
 
 #### FileZilla
 
-It's a good choice for both windows and MAC user to transfer files.
+[FileZilla](https://filezilla-project.org) is a good choice for both windows and macOS user to transfer files.
 
-
+For detailed instructions, please see instructions in the [zilla.md](https://github.com/ZenghuPKU/zenglab_server/blob/main/R.md) page (To be continued)
 
 ## Login 
 For windows users, use MobaxTerm/cmd.
@@ -49,41 +47,40 @@ Please see instructions in the [SSH&DataManagement.md](https://github.com/Zenghu
 
 ## Preparation
 
-Go to your working space
+Go to your own working space.
 
 ```batch
 cd /media/zenglab/result/YourDirectory
 ```
 
-soft link 
+Create a symbolic link.
 
 ```batch
 ln -s /media/zenglab/data/YourDirectory/ImageDirectory ImageDirectory
 ```
 
-copy script to your own space
+Copy script to your own space.
 
 ```batchfile
 cp /media/zenglab/script/yly/find_batch.py find_batch.py
 ```
 
-activate public conda environment
+Activate public conda environment.
 
 ```batch
 source /media/zenglab/miniconda3/etc/profile.d/conda.sh 
-conda activate publiccenv
+conda activate stardist
 ```
 
 
-
 ## Run the script
-Run help command for instruction
+Invoke the 'help' command for guidance.
 
 ```batchfile
 $python find_batch.py --help
 ```
 
-Then you will see instruction like below
+Then you will see the following prompt.
 
 ```batchfile
 2024-06-14 10:57:09.944248: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
@@ -115,13 +112,16 @@ options:
                         Area threshold for image processing.
 ```
 
-Here give an example just using basic parameter not adjust threshold, contrast, and brightness, but you can change them according to your own images. Now I just set them in a relative fine default value.
+Here's an example using basic parameters without adjusting thresholds, contrast, and brightness. You can modify these according to your own images. The current default settings do not alter brightness and contrast, and utilize relatively universal thresholds.
 
 ```batchfile
 $ python find_batch.py --input_dir T15_tif --output_image_dir T15_res --output_csv T15.csv
 ```
 
-You will see log like below
+During the execution, you'll see logs similar to the following:
+> - Ignore any warnings that may appear.
+> - Cell counting for ch00 may take longer, please be patient. (Approximately several tens of seconds per image).
+> - When you see this message "all works have DONE!", it indicates that the script has finished running. Please review the image results to decide whether adjustments to thresholds, brightness, or contrast are needed. You can check the CSV file to view the final statistical results.
 
 ```batch
 2024-06-14 11:37:37.267706: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
@@ -152,19 +152,13 @@ processing images in ch02...
 ------------------------------all works have DONE!------------------------------
 ```
 
-Ignore warnings.
-
-counting for cell number will cost some time, I will improve them later using GPU.
-
-only if you see all works have DONE
-
-I strongly suggest you to use nohup command so that 
+If you have a large number of images to process, I strongly recommend using the `nohup` command or `tmux` to run the program in the server backend.
 
 ```batch
 nohup python find_batch.py --input_dir T15_tif --output_image_dir T15_res --output_csv T15.csv > T15.log &
 ```
 
-Use `top` or `htop` to see the process
+Use `top` or `htop` to monitor the process.
 
  ## Results
 
