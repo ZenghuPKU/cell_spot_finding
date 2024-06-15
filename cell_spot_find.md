@@ -36,7 +36,7 @@ A GitHub Education version account is required for login.
 
 [FileZilla](https://filezilla-project.org) is a good choice for both windows and macOS user to transfer files.
 
-For detailed instructions, please see instructions in the [Zilla.md](https://github.com/ZenghuPKU/cell_spot_finding/blob/main/Zilla.md) page (To be continued).
+For detailed instructions, please see instructions in the [Zilla.md](https://github.com/ZenghuPKU/cell_spot_finding/blob/main/Zilla.md) page.
 
 ## Login 
 For windows users, use MobaxTerm/cmd.
