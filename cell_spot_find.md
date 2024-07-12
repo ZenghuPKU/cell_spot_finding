@@ -73,6 +73,12 @@ source /media/zenglab/miniconda3/etc/profile.d/conda.sh
 conda activate stardist
 ```
 
+New version:
+
+```batch
+source /media/zenglab/anaconda3/etc/profile.d/conda.sh
+conda activate newstar
+```
 
 ## Run the script
 Invoke the 'help' command for guidance.
