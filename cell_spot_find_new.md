@@ -5,6 +5,7 @@ For images within the folder, follow the format "*ch00.tif", "*ch01.tif", "*ch02
 
 ## Transfer raw data
 
+Transfer raw data into /media/zenglab/data/YourDirectory/ImageDirectory
 [FileZilla](https://filezilla-project.org) is a good choice for both windows and macOS user to transfer files.
 
 For detailed instructions, please see instructions in the [Zilla.md](https://github.com/ZenghuPKU/cell_spot_finding/blob/main/Zilla.md) page
@@ -27,7 +28,7 @@ ln -s /media/zenglab/data/YourDirectory/ImageDirectory /media/zenglab/result/You
 ```
 
 Copy script to your own space.
-**you only need to copy this once, later you can just use this in your own directory**
+**You only need to copy this once; later, you can just use it in your own directory.**
 ```batchfile
 cp -r /media/zenglab/script/yly/spotfinder /media/zenglab/result/YourDirectory
 ```
@@ -40,18 +41,17 @@ conda activate cellpose
 ```
 
 ## Run the script
-go to the script
+Go to the script
 
 ```batchfile
-cd YourDirectory/spotfinder
+cd /media/zenglab/result/YourDirectory//spotfinder
 ```
 
-run the script
+Run the script
 ```batchfile
 chmod +x countspots2drun.sh
 ./countspots2drun.sh /media/zenglab/result/lingyuan/spotcount/T
 ```
-
 
 During the execution, you'll see logs similar to the following:
 ```batchfile
