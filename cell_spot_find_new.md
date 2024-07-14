@@ -44,7 +44,7 @@ conda activate cellpose
 Go to the script
 
 ```batchfile
-cd /media/zenglab/result/YourDirectory//spotfinder
+cd /media/zenglab/result/YourDirectory/spotfinder
 ```
 
 Run the script
@@ -61,7 +61,7 @@ During the execution, you'll see logs similar to the following:
 If you have a large number of images to process, I strongly recommend using the `nohup` command or `tmux` to run the program in the server backend.
 
 ```batch
-$ nohup ./countspots2drun.sh /media/zenglab/result/lingyuan/spotcount/T > count.log &
+nohup ./countspots2drun.sh /media/zenglab/result/lingyuan/spotcount/T > count.log &
 ```
 
 Use `top` or `htop` to monitor the process.
