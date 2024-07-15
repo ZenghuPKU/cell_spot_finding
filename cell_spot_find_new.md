@@ -50,7 +50,7 @@ cd /media/zenglab/result/YourDirectory/spotfinder
 Run the script
 ```batchfile
 chmod +x countspots2drun.sh
-./countspots2drun.sh /media/zenglab/result/lingyuan/spotcount/T
+./countspots2drun.sh /media/zenglab/result/YourDirectory
 ```
 
 During the execution, you'll see logs similar to the following:
@@ -86,7 +86,7 @@ nohup ./countspots2drun.sh /media/zenglab/result/lingyuan/spotcount/T > count.lo
 
 Use `top` or `htop` to monitor the process.
 
-
+> If you encounter a bug in the MATLAB interface during execution, please enter ‘exit()’ to exit.
 
 
 
