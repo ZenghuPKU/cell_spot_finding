@@ -81,7 +81,7 @@ All processing completed successfully.
 If you have a large number of images to process, I strongly recommend using the `nohup` command or `tmux` to run the program in the server backend.
 
 ```batch
-nohup ./countspots2drun.sh /media/zenglab/result/lingyuan/spotcount/T > count.log &
+nohup ./countspots2drun.sh /media/zenglab/result/YourDirectory > count.log &
 ```
 
 Use `top` or `htop` to monitor the process.
