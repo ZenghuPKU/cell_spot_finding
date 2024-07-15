@@ -90,6 +90,7 @@ Use `top` or `htop` to monitor the process.
 
 ## Result data
 
+```batchfile
 YourDirectory/
 │
 ├── dapi/
@@ -109,6 +110,7 @@ YourDirectory/
 ├── dapi_counts.csv
 │
 └── spot_counts.csv
+```
 
 The dapi res
 
