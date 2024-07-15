@@ -55,7 +55,27 @@ chmod +x countspots2drun.sh
 
 During the execution, you'll see logs similar to the following:
 ```batchfile
+Processing dapi directory with pose.py
+>>> GPU activated? YES
+Cell counts have been saved to /media/zenglab/result/lingyuan/spotcount/Ttest/dapi_counts.csv
+Mask images have been saved to /media/zenglab/result/lingyuan/spotcount/Ttest/ProcessedDapi
+Processing spot directory with RunAndPlotSpots.m
 
+                                      < M A T L A B (R) >
+                            Copyright 1984-2023 The MathWorks, Inc.
+                       R2023b Update 6 (23.2.0.2485118) 64-bit (glnxa64)
+                                       December 28, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+Now reading /media/zenglab/result/lingyuan/spotcount/Ttest/spot/A1-1_RGB_ch02.tif
+Now reading /media/zenglab/result/lingyuan/spotcount/Ttest/spot/A1-1_betotime_ch02.tif
+Now reading /media/zenglab/result/lingyuan/spotcount/Ttest/spot/A1-1_tempo_ch02.tif
+Now reading /media/zenglab/result/lingyuan/spotcount/Ttest/spot/A1-2_RGB_ch02.tif
+Now reading /media/zenglab/result/lingyuan/spotcount/Ttest/spot/B1_3_5ADVMLE.vsi_rgb_CH(CON640)_1CH_ch03.tif
+All processing completed successfully.
 ```
 
 If you have a large number of images to process, I strongly recommend using the `nohup` command or `tmux` to run the program in the server backend.
