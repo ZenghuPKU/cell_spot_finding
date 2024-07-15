@@ -88,5 +88,28 @@ Use `top` or `htop` to monitor the process.
 
 > If you encounter a bug in the MATLAB interface during execution, please enter ‘exit()’ to exit.
 
+## Result data
+
+YourDirectory/
+│
+├── dapi/
+│   ├── *ch00.tif
+│
+├── spot/
+│   ├── *ch01.tif
+│   ├── *ch02.tif
+│   ├── ...
+│
+├── ProcessedDapi/
+│   ├── *mask.png
+│   
+├── ProcessedSpot/
+│   ├── *spots.png
+│
+├── dapi_counts.csv
+│
+└── spot_counts.csv
+
+The dapi res
 
 
