@@ -90,6 +90,8 @@ Use `top` or `htop` to monitor the process.
 
 ## Result data
 
+You are expected to see result files with the following structure.
+
 ```batchfile
 YourDirectory/
 │
@@ -112,6 +114,8 @@ YourDirectory/
 └── spot_counts.csv
 ```
 
-The dapi res
+· The ‘dapi’ directory contains the source images for ch00, and the ‘spot’ directory contains the source images for other channels. 
+· The ‘ProcessDapi’ directory contains the images after DAPI counting, and the ‘ProcessedSpot’ directory contains the images after fluorescence spot counting, which are used to assess counting accuracy. 
+· The two CSV files contain the final statistics for cell count and spot count, respectively.
 
 
