@@ -50,8 +50,9 @@ cd /media/zenglab/result/YourDirectory/spotfinder
 Run the script
 ```batchfile
 chmod +x countspots2drun.sh
-./countspots2drun.sh /media/zenglab/result/YourDirectory
+./countspots2drun.sh /media/zenglab/result/YourDirectory 0.2
 ```
+> 0.2 is a suitable threshold in most cases. If you feel you’re missing some counts, please lower the threshold; if you think you’re counting too many, please raise the threshold.
 
 During the execution, you'll see logs similar to the following:
 ```batchfile
@@ -81,7 +82,7 @@ All processing completed successfully.
 If you have a large number of images to process, I strongly recommend using the `nohup` command or `tmux` to run the program in the server backend.
 
 ```batch
-nohup ./countspots2drun.sh /media/zenglab/result/YourDirectory > count.log &
+nohup ./countspots2drun.sh /media/zenglab/result/YourDirectory 0.2 > count.log &
 ```
 
 Use `top` or `htop` to monitor the process.
