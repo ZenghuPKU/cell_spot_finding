@@ -118,6 +118,9 @@ YourDirectory/
 - The ‘dapi’ directory contains the source images for ch00, and the ‘spot’ directory contains the source images for other channels.
 - The ‘ProcessDapi’ directory contains the images after DAPI counting, and the ‘ProcessedSpot’ directory contains the images after fluorescence spot counting, which are used to assess counting accuracy.
 - The dapi_counts CSV file contain the final statistics for cell count.
-- The spot_counts CSV file contain the final statistics for spot count, as well as the total fluorescence intensity of the counted points and the fluorescence intensity of the entire image (the same as fiji).
+- The spot_counts CSV file contain three information:
+  1. final statistics for spot count
+  2. the total fluorescence intensity of the counted points
+  3. the fluorescence intensity of the entire image (the same as fiji)
 
 
