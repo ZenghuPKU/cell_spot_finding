@@ -44,7 +44,7 @@ conda activate cellpose
 Go to the script
 
 ```batchfile
-cd /media/zenglab/result/YourDirectory/spotfinder
+cd /media/zenglab/result/YourDirectory/spotfindernew
 ```
 
 Run the script
