@@ -30,7 +30,7 @@ ln -s /media/zenglab/data/YourDirectory/ImageDirectory /media/zenglab/result/You
 Copy script to your own space.
 **You only need to copy this once; later, you can just use it in your own directory.**
 ```batchfile
-cp -r /media/zenglab/script/yly/spotfinder /media/zenglab/result/YourDirectory
+cp -r /media/zenglab/script/yly/spotfindernew /media/zenglab/result/YourDirectory
 ```
 
 Activate public conda environment.
